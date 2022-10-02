@@ -61,3 +61,7 @@ def mac_conv(mac_ipv6):
 
 
 
+def ttl_hex_converter(num):
+    if num > 255 or num < 1:
+        return f'{num} is not in normal TTL range 1-255'
+    return hex(num)

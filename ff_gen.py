@@ -57,7 +57,6 @@ def arguements_parser():
 
 
 
-
 def mpls_ip_payload(ipv4,src_dst):
     """:cvar
     This function return filter_seeds for MPLS matching on payload src/dst IPs
@@ -89,9 +88,6 @@ def ipv4_udp(port_number,src_dst):
         byte_offset = 2
     return match_start,byte_offset,bit_length,range_hex,ffamily
 
-
-
-
 def mpls_first_label(label):
     """:cvar
     This function return filter_seeds for MPLS matching on 1st label
@@ -104,10 +100,6 @@ def mpls_first_label(label):
     range_hex = converter_func.mpls_label_conv(label)
     return match_start,byte_offset,bit_length,range_hex,ffamily
 
-
-
-
-
 def mpls_second_label(label):
     """:cvar
     This function return filter_seeds for MPLS matching on 1st label
@@ -119,11 +111,6 @@ def mpls_second_label(label):
     byte_offset = 4 ## start of 2nd label
     range_hex = converter_func.mpls_label_conv(label)
     return match_start,byte_offset,bit_length,range_hex,ffamily
-
-
-#range_testss = converter_func.mpls_label_conv(label)
-
-
 
 def mpls_ip4_payload(ipv4,src_dst):
     """:cvar
@@ -141,6 +128,19 @@ def mpls_ip4_payload(ipv4,src_dst):
 
     range_hex = converter_func.ip_4_conv(ipv4)
     return match_start,byte_offset,bit_length,range_hex,ffamily
+
+def mpls_ttl(label):
+    """:cvar
+    This function return filter_seeds for MPLS TTL
+    the return goes to generate_filter() function
+    """
+    ffamily = 'mpls'
+    bit_length = 8  ## MPLS label size
+    match_start = 'layer-3'
+    byte_offset = 3  ## start of 2nd label
+    range_hex = converter_func.ttl_hex_converter(label)
+    return match_start, byte_offset, bit_length, range_hex, ffamily
+
 
 def generate_filter(filter_seeds,filter_name):
     """:cvar

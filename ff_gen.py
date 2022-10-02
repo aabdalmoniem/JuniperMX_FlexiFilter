@@ -129,6 +129,37 @@ def mpls_ip4_payload(ipv4,src_dst):
     range_hex = converter_func.ip_4_conv(ipv4)
     return match_start,byte_offset,bit_length,range_hex,ffamily
 
+
+def evpn_payload_ip(ipv4,src_dst):
+    """:cvar
+    This function return filter_seeds for EVPN src/dst IP address
+    the return goes to generate_filter() function
+    """
+    bit_length = 32 ## IPv4 size
+    match_start = 'layer-4'
+    if src_dst == 'src:':
+        byte_offset = 42 ## start of src IP address
+    else:
+        byte_offset = 46  ## start of dst IP address
+    range_hex = converter_func.ip_4_conv(ipv4)
+    return match_start,byte_offset,bit_length,range_hex
+
+
+def evpn_payload_mac(mac,src_dst):
+    """:cvar
+    This function return filter_seeds for EVPN src/dst IP address
+    the return goes to generate_filter() function
+    """
+    bit_length = 48 ## MAC size
+    match_start = 'layer-4'
+    if src_dst == 'src:':
+        byte_offset = 16 ## start of dst MAC address
+    else:
+        byte_offset = 22  ## start of src MAC address
+    range_hex = converter_func.mac_conv(mac)
+    return match_start,byte_offset,bit_length,range_hex
+
+
 def mpls_ttl(label):
     """:cvar
     This function return filter_seeds for MPLS TTL

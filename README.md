@@ -6,37 +6,37 @@
  https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/concept/firewall-filter-flexible-match-conditions-overview.html 
 
 ## Usage
-  usage: ff_gen.py [-h] --name NAME --filter_type FILTER_TYPE [--ipv4 IPV4]
+     usage: ff_gen.py [-h] --name NAME --filter_type FILTER_TYPE [--ipv4 IPV4]
   
-                 [--ipv6 IPV6] [--mac MAC] [--port PORT] [--label LABEL]
+                   [--ipv6 IPV6] [--mac MAC] [--port PORT] [--label LABEL]
                  
-                 [--direction DIRECTION]
+                   [--direction DIRECTION]
                  
 
-  Generate FlexiFilter config for MX.
+     Generate FlexiFilter config for MX.
   
 
-  optional arguments:
+       optional arguments:
   
-   -h, --help            show this help message and exit
+        -h, --help            show this help message and exit
    
-   --name NAME           Filter name
+        --name NAME           Filter name
    
-   --filter_type FILTER_TYPE
+        --filter_type FILTER_TYPE
    
                         Filter Type (UDP/TCP/VPLS/L2VPN/MPLS
                         
-   --ipv4 IPV4           IPv4 address to match
+        --ipv4 IPV4           IPv4 address to match
    
-   --ipv6 IPV6           IPv6 address to match
+        --ipv6 IPV6           IPv6 address to match
    
-   --mac MAC             MAC address to match
+        --mac MAC             MAC address to match
    
-   --port PORT           Port number to match
+        --port PORT           Port number to match
    
-   --label LABEL         MPLS label to match
+        --label LABEL         MPLS label to match
    
-   --direction DIRECTION
+        --direction DIRECTION
    
                         src/dst port to match
                         

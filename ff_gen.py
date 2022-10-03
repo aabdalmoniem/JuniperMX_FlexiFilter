@@ -183,7 +183,7 @@ def generate_filter(filter_seeds,filter_name):
     ENV = Environment(loader=FileSystemLoader('.'))
 
     # load the template file
-    template = ENV.get_template("template.j2")
+    template = ENV.get_template("ff_basic_temp.j2")
     # generating config
 
     match_start  = filter_seeds[0]

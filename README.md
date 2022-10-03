@@ -21,7 +21,9 @@
    -h, --help            show this help message and exit
    
    --name NAME           Filter name
+   
    --filter_type FILTER_TYPE
+   
                         Filter Type (UDP/TCP/VPLS/L2VPN/MPLS
                         
    --ipv4 IPV4           IPv4 address to match

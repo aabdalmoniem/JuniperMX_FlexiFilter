@@ -29,7 +29,7 @@ def arguements_parser():
     parser = argparse.ArgumentParser(description='Generate FlexiFilter config for MX.')
 
     parser.add_argument('--name',type=str,required=True,help='Filter name')
-    parser.add_argument('--filter_type',type=str,required=True,help='Filter Type (UDP/TCP/VPLS/L2VPN/MPLS')
+    parser.add_argument('--filter_type',type=str,required=True,help='Filter Type (UDP/TCP/VPLS/L2VPN/MPLS/EVPN')
     parser.add_argument('--ipv4',type=str,required=False,help ='IPv4 address to match')
     parser.add_argument('--ipv6',type=str,required=False,help ='IPv6 address to match')
     parser.add_argument('--mac',type=str,required=False,help ='MAC address to match')
@@ -135,6 +135,7 @@ def evpn_payload_ip(ipv4,src_dst):
     This function return filter_seeds for EVPN src/dst IP address
     the return goes to generate_filter() function
     """
+    ffamily = 'inet'
     bit_length = 32 ## IPv4 size
     match_start = 'layer-4'
     if src_dst == 'src:':
@@ -142,7 +143,7 @@ def evpn_payload_ip(ipv4,src_dst):
     else:
         byte_offset = 46  ## start of dst IP address
     range_hex = converter_func.ip_4_conv(ipv4)
-    return match_start,byte_offset,bit_length,range_hex
+    return match_start,byte_offset,bit_length,range_hex,ffamily
 
 
 def evpn_payload_mac(mac,src_dst):
@@ -150,6 +151,7 @@ def evpn_payload_mac(mac,src_dst):
     This function return filter_seeds for EVPN src/dst IP address
     the return goes to generate_filter() function
     """
+    ffamily = 'inet'
     bit_length = 48 ## MAC size
     match_start = 'layer-4'
     if src_dst == 'src:':
@@ -157,7 +159,7 @@ def evpn_payload_mac(mac,src_dst):
     else:
         byte_offset = 22  ## start of src MAC address
     range_hex = converter_func.mac_conv(mac)
-    return match_start,byte_offset,bit_length,range_hex
+    return match_start,byte_offset,bit_length,range_hex,ffamily
 
 
 def mpls_ttl(label):
@@ -194,7 +196,7 @@ def generate_filter(filter_seeds,filter_name):
     group_temp = [
         {
             "filter_name": filter_name,
-            "term_name": range_hex,
+            "term_name": filter_name,
             "match_start": match_start,
             "byte_offset":offset,
             "bit_length":bit_length,
@@ -219,6 +221,21 @@ def args_filter():
 
 #### print(args_filter(arguements_parser()))
 filter_name = args_checks['filter_name']
+
+
+if args_checks['filter_type'] == 'evpn':
+    if args_checks['ipv4'] and args_checks['direction']:
+        ipv4 = args_checks['ipv4']
+        src_dst = args_checks['direction']
+        filter_seeds = evpn_payload_ip(ipv4, src_dst)
+        print(filter_seeds)
+        generate_filter(filter_seeds, filter_name)
+    elif args_checks['mac'] and args_checks['direction']:
+        mac = argparse['mac']
+        src_dst = args_checks['direction']
+        filter_seeds = evpn_payload_mac(mac, src_dst)
+        generate_filter(filter_seeds, filter_name)
+
 
 ## TCP/UDP matching generator
 if args_checks['filter_type'] == 'udp' or args_checks['filter_type'] == 'tcp':

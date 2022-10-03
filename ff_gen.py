@@ -242,7 +242,7 @@ if args_checks['filter_type'] == 'evpn':
         print(filter_seeds)
         generate_filter(filter_seeds, filter_name)
     elif args_checks['mac'] and args_checks['direction']:
-        mac = argparse['mac']
+        mac = args_checks['mac']
         src_dst = args_checks['direction']
         filter_seeds = evpn_payload_mac(mac, src_dst)
         generate_filter(filter_seeds, filter_name)

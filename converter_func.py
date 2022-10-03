@@ -66,7 +66,7 @@ def ipv6_conv(ipv6):
 
 
 def mac_conv(mac_ipv6):
-    mac_hexa = '0x' + ''.join(mac_conv.split(':'))
+    mac_hexa = '0x' + ''.join(mac_ipv6.split(':'))
     print(mac_hexa)
     return mac_hexa
 

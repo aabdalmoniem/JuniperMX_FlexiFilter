@@ -42,7 +42,9 @@
                         
 
 ## Samples usage :
-       ./script.py --filter_type mpls --name flexi_test_mpls --label 17990
-       ./script.py --filter_type mpls --name flexi_test_mpls --ipv4 66.66.66.66 --direction src
-       ./script.py --filter_type udp --name flexi_test_1 --port 12345 --direction src
-       ./script.py --filter_type udp --name flexi_test_1 --port 12345 --direction dst
+       ./ff_gen.py --filter_type mpls --name flexi_test_mpls --label 17990
+       ./ff_gen.py --filter_type mpls --name flexi_test_mpls --ipv4 66.66.66.66 --direction src
+       ./ff_gen.py --filter_type udp --name flexi_test_1 --port 12345 --direction src
+       ./ff_gen.py --filter_type udp --name flexi_test_1 --port 12345 --direction dst
+       ./ff_gen.py --filter_type evpn --name evpn_src_payload_ip --direct dst --mac 12:12:12:12:12:12
+       ./ff_gen.py --filter_type evpn --name evpn_src_payload_ip --direct src --ipv4 1.1.1.1

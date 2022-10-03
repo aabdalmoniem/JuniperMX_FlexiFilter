@@ -1,5 +1,16 @@
 #!/usr/bin/env python3
 
+##################################################
+## Flexi Fitler generator script
+##################################################
+## Author: Alaa Aboeloula
+## License: {license}
+## Version: 1.0
+## Mmaintainer: Alaa Aboeloula
+## Email: aabdalmoniem@gmail.com
+## Status: In progress
+##################################################
+
 from datetime import datetime
 import sys, os
 import subprocess

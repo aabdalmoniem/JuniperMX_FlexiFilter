@@ -4,6 +4,17 @@ import ipaddress
 import sys, os
 
 
+##################################################
+## Flexi Fitler generator script converter functions
+##################################################
+## Author: Alaa Aboeloula
+## License: {license}
+## Version: 1.0
+## Mmaintainer: Alaa Aboeloula
+## Email: aabdalmoniem@gmail.com
+## Status: In progress
+##################################################
+
 logging.basicConfig(
     format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
     level=logging.INFO)

@@ -1,0 +1,24 @@
+
+
+{% for param in param_list %}
+
+
+
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} from flexible-match-mask match-start {{param.match_start}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} from flexible-match-mask byte-offset {{param.byte_offset}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} from flexible-match-mask bit-length {{param.bit_length}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} from flexible-match-mask prefix {{param.prefix}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} then count dst-{{param.range_hex}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} then log
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.filter_name}} then accept
+
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} from flexible-match-range match-start {{param.match_start_2}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} from flexible-match-range byte-offset {{param.byte_offset_2}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} from flexible-match-range bit-length {{param.bit_length_2}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} from flexible-match-range range {{param.range_hex_2}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} then count dst-{{param.range_hex_2}}
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} then log
+set firewall family {{param.ffamily}} filter {{param.filter_name}} term {{param.range_hex_2}} then accept
+
+
+{% endfor %}
